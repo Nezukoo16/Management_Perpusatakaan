@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Reservation extends Model
 {
@@ -18,5 +19,9 @@ class Reservation extends Model
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
+    }
+    public function transaction(): HasOne
+    {
+        return $this->hasOne(Transaction::class);
     }
 }
