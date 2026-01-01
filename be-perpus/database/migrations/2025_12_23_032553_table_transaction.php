@@ -9,8 +9,7 @@ return new class extends Migration {
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('transaction_id');
-            $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("book_id");
+            $table->unsignedBigInteger("reservation_id");
             $table->date('borrow_date');
             $table->date('due_date');
             $table->date('return_date')->nullable();
