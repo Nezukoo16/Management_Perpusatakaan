@@ -52,7 +52,7 @@ class UserController extends Controller
             $validated["password"] = Hash::make($validated["password"]);
         }
         $user = User::where("user_id", $id)->update($validated);
-        return ApiResponse::success($user, "Succes to Create A User");
+        return ApiResponse::success($user, "Succes to Update A User");
     }
 
     public function deleteUser(Request $request, $id)
