@@ -1,39 +1,51 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware(["auth.jwt"])->group(function () {
-// Categories
-Route::get("/categories", [CategoryController::class, "getCategories"]);
-Route::get("/categories/{id}", [CategoryController::class, "getCategory"]);
-Route::post("/categories", [CategoryController::class, "createCategory"]);
-Route::patch("/categories/{id}", [CategoryController::class, "updateCategory"]);
-Route::delete("/categories/{id}", [CategoryController::class, "deleteCategory"]);
+// Authentication
+Route::prefix("/auth")->group(function () {
+    Route::post("/login", [AuthController::class, "login"]);
+    Route::post("/register", [AuthController::class, "register"]);
+    Route::get("/refresh", [AuthController::class, "refresh"]);
+});
 
-// Books
-Route::get("/books", [BookController::class, "getBooks"]);
-Route::get("/books/{id}", [BookController::class, "getBook"]);
-Route::post("/books", [BookController::class, "createBook"]);
-Route::patch("/books/{id}", [BookController::class, "updateBook"]);
-Route::delete("/books/{id}", [BookController::class, "deleteBook"]);
+Route::middleware(["auth.jwt"])->group(function () {
+    // Authentication
+    Route::delete("/logout", [AuthController::class, "logout"]);
+    Route::patch("/users", [AuthController::class, "update"]);
 
-// Reservations
-Route::get("/reservations", [ReservationController::class, "getReservations"]);
-Route::get("/reservations/{id}", [ReservationController::class, "getReservation"]);
-Route::post("/reservations", [ReservationController::class, "createReservation"]);
-Route::patch("/reservations/{id}", [ReservationController::class, "updateReservation"]);
-Route::delete("/reservations/{id}", [ReservationController::class, "deleteReservation"]);
+    // Categories
+    Route::get("/categories", [CategoryController::class, "getCategories"]);
+    Route::get("/categories/{id}", [CategoryController::class, "getCategory"]);
+    Route::post("/categories", [CategoryController::class, "createCategory"]);
+    Route::patch("/categories/{id}", [CategoryController::class, "updateCategory"]);
+    Route::delete("/categories/{id}", [CategoryController::class, "deleteCategory"]);
 
-// Transactions
-Route::get("/transactions", [TransactionController::class, "getTransactions"]);
-Route::get("/transactions/{id}", [TransactionController::class, "getTransaction"]);
-Route::post("/transactions", [TransactionController::class, "createTransaction"]);
-Route::patch("/transactions/{id}", [TransactionController::class, "updateTransaction"]);
-Route::delete("/transactions/{id}", [TransactionController::class, "deleteTransaction"]);
+    // Books
+    Route::get("/books", [BookController::class, "getBooks"]);
+    Route::get("/books/{id}", [BookController::class, "getBook"]);
+    Route::post("/books", [BookController::class, "createBook"]);
+    Route::patch("/books/{id}", [BookController::class, "updateBook"]);
+    Route::delete("/books/{id}", [BookController::class, "deleteBook"]);
 
-// });
+    // Reservations
+    Route::get("/reservations", [ReservationController::class, "getReservations"]);
+    Route::get("/reservations/{id}", [ReservationController::class, "getReservation"]);
+    Route::post("/reservations", [ReservationController::class, "createReservation"]);
+    Route::patch("/reservations/{id}", [ReservationController::class, "updateReservation"]);
+    Route::delete("/reservations/{id}", [ReservationController::class, "deleteReservation"]);
+
+    // Transactions
+    Route::get("/transactions", [TransactionController::class, "getTransactions"]);
+    Route::get("/transactions/{id}", [TransactionController::class, "getTransaction"]);
+    Route::post("/transactions", [TransactionController::class, "createTransaction"]);
+    Route::patch("/transactions/{id}", [TransactionController::class, "updateTransaction"]);
+    Route::delete("/transactions/{id}", [TransactionController::class, "deleteTransaction"]);
+
+});
 
