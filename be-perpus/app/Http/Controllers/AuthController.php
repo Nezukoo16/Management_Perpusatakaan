@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -17,20 +18,28 @@ class AuthController extends Controller
 
         try {
             $validated = $request->validate([
-                'username' => "required|string",
+                'nim' => "required|integer",
                 "password" => 'required|string'
             ], );
             if (!Auth::attempt($validated)) {
-                return response()->json([], 401);
+                return ApiResponse::error("Failed to login");
             }
 
             if (!$token = JWTAuth::attempt($validated)) {
-                return response()->json([], 401);
+                return ApiResponse::error("Failed to login");
             }
+
             return ApiResponse::success(["token" => $token], "Success to login");
         } catch (Exception $e) {
-            return ApiResponse::error("Internal Server Error");
+
+            return ApiResponse::error("Internal Server Error", $e);
         }
+    }
+
+    public function me()
+    {
+        $user = Auth::user();
+        return ApiResponse::success($user);
     }
 
     public function register(Request $request)
@@ -38,15 +47,17 @@ class AuthController extends Controller
         try {
             $validated = $request->validate([
                 'name' => "required|string",
+                'email' => "required|email",
                 "password" => 'required|string',
                 'nim' => 'required|integer',
-                'jurusan' => 'required|string'
+                'jurusan' => 'required|string',
+                'status' => 'sometimes|boolean'
             ], );
             $validated["password"] = Hash::make($validated["password"]);
             $user = User::create($validated);
             return ApiResponse::success($user, "Success to register");
         } catch (Exception $e) {
-            return ApiResponse::error("Internal Server Error");
+            return ApiResponse::error("Internal Server Error", $e);
         }
     }
     public function update(Request $request, $id)
@@ -54,9 +65,11 @@ class AuthController extends Controller
         try {
             $validated = $request->validate([
                 'name' => "sometimes|string",
+                'email' => "sometimes|email",
                 "password" => 'sometimes|string',
                 'nim' => 'sometimes|integer',
-                'jurusan' => 'sometimes|string'
+                'jurusan' => 'sometimes|string',
+                'status' => 'sometimes|boolean'
             ], );
             if ($validated["password"] != null) {
                 $validated["password"] = Hash::make($validated["password"]);
@@ -64,16 +77,17 @@ class AuthController extends Controller
             $user = User::where("user_id", $id)->update($validated);
             return ApiResponse::success($user, "Success to update");
         } catch (Exception $e) {
-            return ApiResponse::error("Internal Server Error");
+            return ApiResponse::error("Internal Server Error", $e);
         }
     }
     public function refresh()
     {
         try {
-            $token = JWTAuth::refresh();
+            $token = JWTAuth::parseToken()->refresh();
             return ApiResponse::success(["token" => $token], "Success to login");
         } catch (\Throwable $e) {
-            return ApiResponse::error("Internal Server Error");
+            Log::alert($e);
+            return ApiResponse::error("Internal Server Error", $e);
         }
     }
     public function logout()
@@ -82,7 +96,7 @@ class AuthController extends Controller
             Auth::logout();
             return ApiResponse::success(null, "Success to logout");
         } catch (Exception $e) {
-            return ApiResponse::error("Internal Server Error");
+            return ApiResponse::error("Internal Server Error", $e);
         }
     }
 }

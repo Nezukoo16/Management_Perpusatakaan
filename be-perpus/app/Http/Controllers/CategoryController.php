@@ -35,7 +35,7 @@ class CategoryController extends Controller
             "name" => "sometimes|string",
         ]);
         $category = Category::where("category_id", $id)->update($validated);
-        return ApiResponse::success($category, "Succes to Create A Category");
+        return ApiResponse::success($category, "Succes to Update A Category");
     }
 
     public function deleteCategory(Request $request, $id)

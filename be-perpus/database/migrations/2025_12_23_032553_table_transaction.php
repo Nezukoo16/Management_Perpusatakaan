@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->date('return_date')->nullable();
             $table->enum('status', ['borrowed', 'returned'])->default('borrowed');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

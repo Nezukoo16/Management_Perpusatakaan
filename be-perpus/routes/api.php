@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication
@@ -14,10 +15,18 @@ Route::prefix("/auth")->group(function () {
     Route::get("/refresh", [AuthController::class, "refresh"]);
 });
 
-Route::middleware(["auth.jwt"])->group(function () {
+Route::middleware("jwt.auth")->group(function () {
     // Authentication
-    Route::delete("/logout", [AuthController::class, "logout"]);
-    Route::patch("/users", [AuthController::class, "update"]);
+    Route::delete("/auth/logout", [AuthController::class, "logout"]);
+    Route::get("/auth/me", [AuthController::class, "me"]);
+
+
+    // Users
+    Route::get("/users", [UserController::class, "getUsers"]);
+    Route::get("/users/{id}", [UserController::class, "getUser"]);
+    Route::post("/users", [UserController::class, "createUser"]);
+    Route::patch("/users/{id}", [UserController::class, "updateUser"]);
+    Route::delete("/users/{id}", [UserController::class, "deleteUser"]);
 
     // Categories
     Route::get("/categories", [CategoryController::class, "getCategories"]);
