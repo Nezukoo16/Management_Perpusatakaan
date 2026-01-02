@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 // Route::middleware(["auth.jwt"])->group(function () {
@@ -18,6 +20,20 @@ Route::get("/books/{id}", [BookController::class, "getBook"]);
 Route::post("/books", [BookController::class, "createBook"]);
 Route::patch("/books/{id}", [BookController::class, "updateBook"]);
 Route::delete("/books/{id}", [BookController::class, "deleteBook"]);
+
+// Reservations
+Route::get("/reservations", [ReservationController::class, "getReservations"]);
+Route::get("/reservations/{id}", [ReservationController::class, "getReservation"]);
+Route::post("/reservations", [ReservationController::class, "createReservation"]);
+Route::patch("/reservations/{id}", [ReservationController::class, "updateReservation"]);
+Route::delete("/reservations/{id}", [ReservationController::class, "deleteReservation"]);
+
+// Transactions
+Route::get("/transactions", [TransactionController::class, "getTransactions"]);
+Route::get("/transactions/{id}", [TransactionController::class, "getTransaction"]);
+Route::post("/transactions", [TransactionController::class, "createTransaction"]);
+Route::patch("/transactions/{id}", [TransactionController::class, "updateTransaction"]);
+Route::delete("/transactions/{id}", [TransactionController::class, "deleteTransaction"]);
 
 // });
 
