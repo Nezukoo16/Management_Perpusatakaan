@@ -6,7 +6,6 @@ use App\Helpers\ApiResponse;
 use App\Models\Reservation;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
-use Transliterator;
 
 class ReservationController extends Controller
 {
@@ -28,8 +27,14 @@ class ReservationController extends Controller
             "user_id" => "required|integer",
             "book_id" => "required|integer",
             "reservation_date" => "required|string",
-            "status" => "required|string",
         ]);
+
+        $current = Reservation::where("user_id", $validated["user_id"])
+            ->where("status", "waiting")
+            ->get();
+        if ($current) {
+            return ApiResponse::error("You have made a reservation");
+        }
         $reservation = Reservation::create($validated);
         return ApiResponse::success($reservation, "Succes to Create A Reservation");
     }

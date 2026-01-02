@@ -27,8 +27,6 @@ class TransactionController extends Controller
             "reservation_id" => "required|integer",
             "borrow_date" => "required|string",
             "due_date" => "required|string",
-            "return_date" => "required|string",
-            "status" => "required|string",
         ]);
         $transaction = Transaction::create($validated);
         return ApiResponse::success($transaction, "Succes to Create A Transaction");
