@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,7 @@ Route::middleware("jwt.auth")->group(function () {
     Route::get("/reservations/{id}", [ReservationController::class, "getReservation"]);
     Route::post("/reservations", [ReservationController::class, "createReservation"]);
     Route::patch("/reservations/{id}", [ReservationController::class, "updateReservation"]);
+    Route::patch("/reservations/{id}/status", [ReservationController::class, "changeStatus"]);
     Route::delete("/reservations/{id}", [ReservationController::class, "deleteReservation"]);
 
     // Transactions
@@ -54,5 +56,8 @@ Route::middleware("jwt.auth")->group(function () {
     Route::post("/transactions", [TransactionController::class, "createTransaction"]);
     Route::patch("/transactions/{id}", [TransactionController::class, "updateTransaction"]);
     Route::delete("/transactions/{id}", [TransactionController::class, "deleteTransaction"]);
+
+    // Logs
+    Route::get("/logs", [LogController::class, "getLogs"]);
 });
 

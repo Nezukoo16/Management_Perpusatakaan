@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ApiResponse;
 use App\Models\Reservation;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Transliterator;
@@ -13,7 +14,7 @@ class ReservationController extends Controller
 {
     public function getReservations()
     {
-        $reservations = Reservation::get();
+        $reservations = Reservation::with(["user", "book"])->orderBy("status")->get();
         return ApiResponse::success($reservations, "Success To Get All Reservations");
     }
 
@@ -30,6 +31,7 @@ class ReservationController extends Controller
             "book_id" => "required|integer",
             "reservation_date" => "required|string",
         ]);
+<<<<<<< HEAD
 
         $current = Reservation::where("user_id", $validated["user_id"])
             ->where("status", "waiting")
@@ -37,8 +39,19 @@ class ReservationController extends Controller
         if ($current) {
             return ApiResponse::error("You have made a reservation");
         }
+=======
+        $validated["status"] = "waiting";
+>>>>>>> master
         $reservation = Reservation::create($validated);
         return ApiResponse::success($reservation, "Succes to Create A Reservation");
+    }
+
+
+
+    public function deleteReservation(Request $request, $id)
+    {
+        Reservation::where("reservation_id", $id)->delete();
+        return ApiResponse::success(null, "Succes to Delete A Reservation");
     }
 
     public function updateReservation(Request $request, $id)
@@ -47,22 +60,32 @@ class ReservationController extends Controller
             "user_id" => "required|integer",
             "book_id" => "sometimes|integer",
             "reservation_date" => "sometimes|string",
-            "status" => "sometimes|string",
+            "status" => "sometimes|in:waiting,cancelled,completed",
         ]);
 
-        // $transaction = Transaction::whereHas("reservation", function ($query) use ($validated) {
-        //     $query->where("user_id", $validated["user_id"])->where("status", "borrowed")->firstOrFail();
-        // });
-        // if ($transaction) {
-        //     return ApiResponse::error("You must return the book that you borrowed");
-        // }
-        $reservation = Reservation::where("reservation_id", $id)->update($validated);
-        return ApiResponse::success($reservation, "Succes to Update A Reservation");
+        $reservation = Reservation::where("reservation_id", $id)->first();
+
+        if ($reservation["status"] != "waiting") {
+            return ApiResponse::error("You cant change reservation");
+        }
+
+        if ($validated["status"] == "cancelled") {
+            $reservation->update($validated);
+            return ApiResponse::success($reservation, message: "Succes to cancel the reservation");
+        }
+
+        $reservation->update($validated);
+
+
+        Transaction::create([
+            "reservation_id" => $reservation["reservation_id"],
+            "borrow_date" => Carbon::now(),
+            "due_date" => Carbon::now()->addWeek(),
+            "status" => "borrowed",
+        ]);
+
+        return ApiResponse::success($reservation, message: "Succes to approve the reservation");
+
     }
 
-    public function deleteReservation(Request $request, $id)
-    {
-        Reservation::where("reservation_id", $id)->delete();
-        return ApiResponse::success(null, "Succes to Delete A Reservation");
-    }
 }

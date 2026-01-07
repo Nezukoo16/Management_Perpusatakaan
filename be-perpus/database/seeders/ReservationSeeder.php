@@ -31,7 +31,7 @@ class ReservationSeeder extends Seeder
                 'user_id' => 3,
                 'book_id' => 3,
                 'reservation_date' => Carbon::now()->subDays(2)->toDateString(),
-                'status' => 'canceled',
+                'status' => 'cancelled',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

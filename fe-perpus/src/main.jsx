@@ -159,7 +159,7 @@ createRoot(document.getElementById("root")).render(
             </AdminSidebar>
           }
         />
-        {/* TRANSACTIONS ROUTES */}
+        {/* LOGS ROUTES */}
         <Route
           path="/admin/logs"
           element={
