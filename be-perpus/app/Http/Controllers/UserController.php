@@ -24,14 +24,15 @@ class UserController extends Controller
     public function createUser(Request $request)
     {
         $validated = $request->validate([
-            "email" => "required|string",
+            "email" => "required|email",
             "name" => "required|string",
-            "nim" => "required|integer",
-            "jurusan" => "required|string",
+            "nim" => "sometimes|nullable|integer",
+            "jurusan" => "sometimes|nullable|string",
             "role" => "required|string",
-            "status" => "required|boolean",
-            "password" => "required|string",
+            "status" => "sometimes|nullable|boolean",
+            "password" => "required|string|min:8",
         ]);
+
         $validated["password"] = Hash::make($validated["password"]);
         $user = User::create($validated);
         return ApiResponse::success($user, "Succes to Create A User");
@@ -40,13 +41,13 @@ class UserController extends Controller
     public function updateUser(Request $request, $id)
     {
         $validated = $request->validate([
-            "email" => "sometimes|string",
+            "email" => "sometimes|email",
             "name" => "sometimes|string",
-            "nim" => "sometimes|integer",
-            "jurusan" => "sometimes|string",
+            "nim" => "sometimes|nullable|integer",
+            "jurusan" => "sometimes|nullable|string",
             "role" => "sometimes|string",
-            "status" => "sometimes|boolean",
-            "password" => "sometimes|string",
+            "status" => "sometimes|nullable|boolean",
+            "password" => "sometimes|string|min:8",
         ]);
         if ($validated["password"] != null) {
             $validated["password"] = Hash::make($validated["password"]);

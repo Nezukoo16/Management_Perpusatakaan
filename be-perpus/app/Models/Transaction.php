@@ -15,7 +15,7 @@ class Transaction extends Model
     protected $fillable = ["reservation_id", "borrow_date", "due_date", "return_date", "status"];
     public function reservation(): BelongsTo
     {
-        return $this->belongsTo(Reservation::class);
+        return $this->belongsTo(Reservation::class, "reservation_id", "reservation_id");
     }
 
 }
