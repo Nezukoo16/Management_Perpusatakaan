@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         try {
             $validated = $request->validate([
-                'nim' => "required|integer",
+                'email' => "required|string",
                 "password" => 'required|string'
             ], );
             if (!Auth::attempt($validated)) {

@@ -38,16 +38,17 @@ class BookController extends Controller
 
     public function updateBook(Request $request, $id)
     {
+
         $validated = $request->validate([
             "title" => "sometimes|string",
             "category_id" => "sometimes|integer",
             "author" => "sometimes|string",
             "publisher" => "sometimes|string",
-            "publication_year" => "sometimes|string",
+            "publication_year" => "sometimes|integer",
             "stock" => "sometimes|integer",
         ]);
         $book = Book::where("book_id", $id)->update($validated);
-        return ApiResponse::success($book, "Succes to Create A Book");
+        return ApiResponse::success($book, "Succes to Update A Book");
     }
 
     public function deleteBook(Request $request, $id)

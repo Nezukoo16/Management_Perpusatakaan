@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("book_id");
             $table->date('reservation_date');
-            $table->enum('status', ['waiting', 'completed', 'canceled'])
+            $table->enum('status', ['waiting', 'completed', 'cancelled'])
                 ->default('waiting');
             $table->timestamps();
             $table->softDeletes();
