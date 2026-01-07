@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import useUserStore from "../../Stores/userStore";
+import { useNavigate } from "react-router-dom";
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -6,6 +8,7 @@ function AuthPage() {
     name: "",
     nim: "",
     email: "",
+    jurusan: "",
     password: "",
     confirmPassword: "",
   });
@@ -17,20 +20,22 @@ function AuthPage() {
     });
   };
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+
+  const login = useUserStore((state) => state.login);
+  const register = useUserStore((state) => state.register);
+
+  const handleSubmit = async () => {
     if (isLogin) {
-      console.log("Login data:", {
-        email: formData.email,
-        password: formData.password,
-      });
-      alert("Login berhasil!");
+      const res = await login(formData.email, formData.password);
+      if (res.status == 200) navigate("/");
     } else {
       if (formData.password !== formData.confirmPassword) {
         alert("Password tidak sama!");
         return;
       }
-      console.log("Register data:", formData);
-      alert("Registrasi berhasil!");
+      const res = await register(formData);
+      if (res.status == 200) navigate("/client/auth");
     }
   };
 
@@ -148,6 +153,19 @@ function AuthPage() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Masukkan email"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 text-sm font-medium mb-2">
+                  Jurusan
+                </label>
+                <input
+                  type="text"
+                  name="jurusan"
+                  value={formData.jurusan}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Masukkan jurusan"
                 />
               </div>
 

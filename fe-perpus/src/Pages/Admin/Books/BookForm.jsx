@@ -1,10 +1,11 @@
+import { useNavigate, useParams } from "react-router-dom";
 import ReusableForm from "./../../../Components/ReusableForm";
-
-// ========================================
-// CONTOH PENGGUNAAN: BOOK FORM
-// ========================================
+import { useEffect } from "react";
+import useBookStore from "../../../Stores/BookStore";
+import useCategoryStore from "../../../Stores/CategoryStore";
 
 function BookForm() {
+  const categories = useCategoryStore((state) => state.categories);
   // Konfigurasi fields untuk form buku
   const bookFields = [
     {
@@ -31,7 +32,7 @@ function BookForm() {
       required: true,
     },
     {
-      name: "year",
+      name: "publication_year",
       label: "Tahun Terbit",
       type: "number",
       placeholder: "Contoh: 2024",
@@ -43,28 +44,15 @@ function BookForm() {
         return null;
       },
     },
+
     {
-      name: "isbn",
-      label: "ISBN",
-      type: "text",
-      placeholder: "Contoh: 978-1234567890",
-      required: true,
-    },
-    {
-      name: "category",
+      name: "category_id",
       label: "Kategori",
       type: "select",
       required: true,
-      options: [
-        { value: "Programming", label: "Programming" },
-        { value: "Database", label: "Database" },
-        { value: "Data Science", label: "Data Science" },
-        { value: "Web Development", label: "Web Development" },
-        { value: "Mobile Development", label: "Mobile Development" },
-        { value: "AI & Machine Learning", label: "AI & Machine Learning" },
-        { value: "Networking", label: "Networking" },
-        { value: "Other", label: "Lainnya" },
-      ],
+      options: categories.map((category, index) => {
+        return { value: category.category_id, label: category.name };
+      }),
     },
     {
       name: "stock",
@@ -77,61 +65,49 @@ function BookForm() {
         return null;
       },
     },
-    {
-      name: "description",
-      label: "Deskripsi",
-      type: "textarea",
-      placeholder: "Masukkan deskripsi atau sinopsis buku",
-      rows: 4,
-      colSpan: 2,
-      required: false,
-      helpText: "Opsional: Tambahkan deskripsi singkat tentang buku",
-    },
   ];
 
   // Initial data kosong
   const initialData = {
-    title: "",
-    author: "",
+    title: "  ",
+    category_id: 0,
+    author: "   ",
     publisher: "",
-    year: "",
-    isbn: "",
-    category: "",
-    stock: "",
-    description: "",
+    publication_year: 0,
+    stock: 0,
   };
+
+  const { id } = useParams();
+
+  const books = useBookStore((state) => state.books);
+  const addBook = useBookStore((state) => state.addBook);
+  const updateBook = useBookStore((state) => state.updateBook);
+  const fetchCategories = useCategoryStore((state) => state.fetchCategories);
+
+  const navigate = useNavigate();
 
   // Function untuk fetch data by ID (untuk edit mode)
   const fetchBookById = async (id) => {
-    // Uncomment dan sesuaikan dengan store/API kamu
-    // const book = await useBooksStore.getState().fetchBookById(id);
-    // return book;
-
-    // Dummy data untuk testing
-    return {
-      title: "Pemrograman Web dengan React",
-      author: "John Doe",
-      publisher: "Tech Publisher",
-      year: "2023",
-      isbn: "978-1234567890",
-      category: "Programming",
-      stock: "5",
-      description: "Buku tentang React JS",
-    };
+    for (const book of books) {
+      if (book.book_id == id) return book;
+    }
   };
 
   // Handle submit
   const handleSubmit = async (data, isEditMode, id) => {
     if (isEditMode) {
-      // Update book
-      console.log("Update book:", id, data);
-      // await useBooksStore.getState().updateBook(id, data);
+      const res = await updateBook(data, id);
+      if (res == 200) navigate("/admin/books");
     } else {
-      // Add book
-      console.log("Add book:", data);
-      // await useBooksStore.getState().addBook(data);
+      const res = await addBook(data);
+      if (res == 200) navigate("/admin/books");
     }
   };
+
+  useEffect(() => {
+    if (categories.length == 0) fetchCategories();
+    if (id) fetchBookById(id);
+  }, [fetchBookById]);
 
   return (
     <ReusableForm

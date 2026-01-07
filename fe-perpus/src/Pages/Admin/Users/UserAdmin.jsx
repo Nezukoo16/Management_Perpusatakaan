@@ -1,57 +1,64 @@
 import { useState, useEffect } from "react";
-import DataTable from "./../../../Components/DataTable";
-import useBooksStore from "./../../../Stores/BookStore";
+import DataTable from "../../../Components/DataTable";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../../../Stores/userStore";
+import { useShallow } from "zustand/react/shallow";
 
-function BooksAdmin() {
-  const { books, isLoading, error, fetchBooks, deleteBook } = useBooksStore();
+function UserAdmin() {
+  const { users, isLoading, error, fetchUsers, deleteUser } = useUserStore(
+    useShallow((state) => ({
+      users: state.users,
+      isLoading: state.isLoading,
+      error: state.error,
+      fetchUsers: state.fetchUsers,
+      deleteUser: state.deleteUser,
+    }))
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchBooks();
+    fetchUsers();
   }, []);
 
   // Definisi kolom untuk table
   const columns = [
     {
-      key: "book_id",
-      label: "Book ID",
+      key: "user_id",
+      label: "ID User",
     },
     {
-      key: "title",
-      label: "Judul Buku",
+      key: "nim",
+      label: "NIM",
     },
     {
-      key: "author",
-      label: "Penulis",
+      key: "name",
+      label: "Nama",
     },
     {
-      key: "publisher",
-      label: "Penerbit",
+      key: "jurusan",
+      label: "Jurusan",
     },
     {
-      key: "publication_year",
-      label: "Tahun",
+      key: "email",
+      label: "Email",
+    },
+    {
+      key: "role",
+      label: "Role",
     },
 
     {
-      key: "category",
-      label: "Kategori",
-    },
-    {
-      key: "stock",
-      label: "Stok",
+      key: "status",
+      label: "Status",
       render: (value) => (
         <span
           className={`px-3 py-1 rounded-full text-xs font-semibold ${
-            value > 5
+            value == 1
               ? "bg-green-100 text-green-800"
-              : value > 0
-              ? "bg-yellow-100 text-yellow-800"
               : "bg-red-100 text-red-800"
           }`}
         >
-          {value}
+          {value == 1 ? "Active" : "Not Active"}
         </span>
       ),
     },
@@ -59,19 +66,18 @@ function BooksAdmin() {
 
   // Handler untuk tombol tambah
   const handleAdd = () => {
-    navigate("/admin/books/add");
+    navigate("/admin/users/add");
   };
 
   // Handler untuk tombol edit
-  const handleEdit = (book) => {
-    navigate(`/admin/books/update/${book.book_id}`);
+  const handleEdit = (user) => {
+    navigate(`/admin/users/update/${user.user_id}`);
   };
 
   // Handler untuk tombol delete
-  const handleDelete = (book) => {
-    console.log("Delete book:", book);
-    if (confirm(`Apakah Anda yakin ingin menghapus buku "${book.title}"?`)) {
-      deleteBook(book.book_id);
+  const handleDelete = (user) => {
+    if (confirm(`Apakah Anda yakin ingin menghapus user "${user.name}"?`)) {
+      deleteUser(user.user_id);
     }
   };
 
@@ -80,7 +86,7 @@ function BooksAdmin() {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Memuat data buku...</p>
+          <p className="mt-4 text-gray-600">Memuat data user...</p>
         </div>
       </div>
     );
@@ -114,14 +120,14 @@ function BooksAdmin() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-800">Kelola Buku</h1>
-        <p className="text-gray-600 mt-1">Manajemen data buku perpustakaan</p>
+        <p className="text-gray-600 mt-1">Manajemen data user</p>
       </div>
 
       {/* Table */}
       <DataTable
-        title="Daftar Buku"
+        title="Daftar user"
         columns={columns}
-        data={books}
+        data={users}
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDelete}
@@ -130,4 +136,4 @@ function BooksAdmin() {
   );
 }
 
-export default BooksAdmin;
+export default UserAdmin;

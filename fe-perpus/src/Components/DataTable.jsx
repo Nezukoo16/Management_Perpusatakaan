@@ -11,10 +11,17 @@ function DataTable({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Helper function untuk mengakses nested property
+  const getNestedValue = (obj, path) => {
+    return path.split(".").reduce((current, key) => {
+      return current && current[key] !== undefined ? current[key] : null;
+    }, obj);
+  };
+
   // Filter data berdasarkan search
   const filteredData = data.filter((item) => {
     return columns.some((column) => {
-      const value = item[column.key];
+      const value = getNestedValue(item, column.key);
       return (
         value &&
         value.toString().toLowerCase().includes(searchTerm.toLowerCase())
@@ -106,8 +113,8 @@ function DataTable({
                       className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
                     >
                       {column.render
-                        ? column.render(item[column.key], item)
-                        : item[column.key]}
+                        ? column.render(getNestedValue(item, column.key), item)
+                        : getNestedValue(item, column.key)}
                     </td>
                   ))}
                   {(onEdit || onDelete || onView) && (
@@ -228,128 +235,4 @@ function DataTable({
   );
 }
 
-// Contoh Penggunaan
-function ExampleUsage() {
-  // Data dummy
-  const booksData = [
-    {
-      id: 1,
-      title: "Pemrograman Web",
-      author: "John Doe",
-      year: 2023,
-      stock: 5,
-      status: "Tersedia",
-    },
-    {
-      id: 2,
-      title: "Database Design",
-      author: "Jane Smith",
-      year: 2022,
-      stock: 3,
-      status: "Tersedia",
-    },
-    {
-      id: 3,
-      title: "React Fundamentals",
-      author: "Bob Wilson",
-      year: 2024,
-      stock: 0,
-      status: "Habis",
-    },
-    {
-      id: 4,
-      title: "Node.js Advanced",
-      author: "Alice Brown",
-      year: 2023,
-      stock: 7,
-      status: "Tersedia",
-    },
-    {
-      id: 5,
-      title: "Python Data Science",
-      author: "Charlie Davis",
-      year: 2022,
-      stock: 2,
-      status: "Tersedia",
-    },
-  ];
-
-  // Definisi kolom
-  const columns = [
-    { key: "id", label: "ID" },
-    { key: "title", label: "Judul Buku" },
-    { key: "author", label: "Penulis" },
-    { key: "year", label: "Tahun" },
-    {
-      key: "stock",
-      label: "Stok",
-      render: (value) => (
-        <span
-          className={`px-2 py-1 rounded-full text-xs font-medium ${
-            value > 0
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
-        >
-          {value}
-        </span>
-      ),
-    },
-    {
-      key: "status",
-      label: "Status",
-      render: (value) => (
-        <span
-          className={`px-2 py-1 rounded-full text-xs font-medium ${
-            value === "Tersedia"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
-        >
-          {value}
-        </span>
-      ),
-    },
-  ];
-
-  const handleView = (item) => {
-    console.log("View:", item);
-    alert(`Melihat detail: ${item.title}`);
-  };
-
-  const handleEdit = (item) => {
-    console.log("Edit:", item);
-    alert(`Edit: ${item.title}`);
-  };
-
-  const handleDelete = (item) => {
-    console.log("Delete:", item);
-    if (confirm(`Hapus buku "${item.title}"?`)) {
-      alert("Buku berhasil dihapus!");
-    }
-  };
-
-  const handleAdd = () => {
-    console.log("Tambah data baru");
-    alert("Membuka form tambah data");
-  };
-
-  return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Contoh Penggunaan Table
-      </h1>
-      <DataTable
-        title="Daftar Buku"
-        columns={columns}
-        data={booksData}
-        onAdd={handleAdd}
-        onView={handleView}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
-    </div>
-  );
-}
-
-export default ExampleUsage;
+export default DataTable;

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import useUserStore from "../../Stores/userStore";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,16 +17,15 @@ const AdminLogin = () => {
     });
   };
 
-  const handleLogin = () => {
-    console.log("Login data:", {
-      email: formData.email,
-      password: formData.password,
-    });
-    alert("Login admin berhasil!");
+  const login = useUserStore((state) => state.login);
+
+  const handleLogin = async () => {
+    const res = await login(formData.email, formData.password);
+    if (res.status == 200) navigate("/admin/dashboard");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-blue-900 to-blue-700 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
         {/* Header */}
         <div className="text-center mb-8">
