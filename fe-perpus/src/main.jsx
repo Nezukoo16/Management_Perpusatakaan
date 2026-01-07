@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/home";
 import ClientAuth from "./Pages/Client/ClientAuth";
 import NotFound from "./Pages/NotFound";
 import AdminLogin from "./Pages/Admin/AdminAuth";
@@ -18,12 +17,16 @@ import ReservationForm from "./Pages/Admin/Reservations/ReservationForm";
 import TransactionAdmin from "./Pages/Admin/Transactions/TransactionAdmin";
 import TransactionForm from "./Pages/Admin/Transactions/TransactionForm";
 import LogAdmin from "./Pages/Admin/Logs/LogAdmin";
+import HomePage from "./Pages/Home";
+import ClientDashboard from "./Pages/Client/DashboardClient";
+import UserReservationPage from "./Pages/Client/Reservation";
+import TransactionPage from "./Pages/Client/Transaction";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         {/* Admin */}
         <Route path="/admin/auth" element={<AdminLogin />} />
         <Route
@@ -171,6 +174,9 @@ createRoot(document.getElementById("root")).render(
 
         {/* Client */}
         <Route path="/client/auth" element={<ClientAuth />} />
+        <Route path="/client/dashboard" element={<ClientDashboard />} />
+        <Route path="/client/reservations" element={<UserReservationPage />} />
+        <Route path="/client/transactions" element={<TransactionPage />} />
         {/* Not Found Handler */}
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -28,7 +28,7 @@ function AuthPage() {
   const handleSubmit = async () => {
     if (isLogin) {
       const res = await login(formData.email, formData.password);
-      if (res.status == 200) navigate("/");
+      if (res.status == 200) navigate("/client/dashboard");
     } else {
       if (formData.password !== formData.confirmPassword) {
         alert("Password tidak sama!");
