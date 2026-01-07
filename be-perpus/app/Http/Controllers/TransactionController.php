@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
@@ -14,8 +15,21 @@ class TransactionController extends Controller
 
     public function getTransactions()
     {
-        $transactions = Transaction::with(["reservation.user", "reservation.book"])->orderBy("status")->get();
-        return ApiResponse::success($transactions, "Success To Get All Transactions");
+
+        $user = Auth::user();
+        if ($user["role"] == "admin") {
+            $transactions = Transaction::with(["reservation.user", "reservation.book"])->orderBy("status")->get();
+            return ApiResponse::success($transactions, "Success To Get All Transactions");
+        } else {
+            $transactions = Transaction::whereHas('reservation', function ($query) use ($user) {
+                $query->where('user_id', $user['user_id']);
+            })
+                ->with(['reservation.user', 'reservation.book'])
+                ->orderBy('status')
+                ->get();
+            return ApiResponse::success($transactions, "Success To Get All Transactions");
+        }
+
     }
 
     public function getTransaction(Request $request, $id)
@@ -44,9 +58,9 @@ class TransactionController extends Controller
     public function updateTransaction(Request $request, $id)
     {
         $validated = $request->validate([
-            "reservation_id" => "required|integer",
-            "borrow_date" => "required|string",
-            "due_date" => "required|string",
+            "reservation_id" => "sometimes|integer",
+            "borrow_date" => "sometimes|string",
+            "due_date" => "sometimes|string",
             "status" => "sometimes|string",
         ]);
 
