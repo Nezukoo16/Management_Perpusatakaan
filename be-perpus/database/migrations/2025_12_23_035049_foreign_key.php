@@ -11,8 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->foreign("user_id")->references("user_id")->on("users");
-            $table->foreign("book_id")->references("book_id")->on("books");
+            $table->foreign("reservation_id")->references("reservation_id")->on("reservations");
         });
         Schema::table('reservations', function (Blueprint $table) {
             $table->foreign("user_id")->references("user_id")->on("users");

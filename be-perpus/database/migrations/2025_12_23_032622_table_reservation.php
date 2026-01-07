@@ -14,10 +14,8 @@ return new class extends Migration {
             $table->date('reservation_date');
             $table->enum('status', ['waiting', 'completed', 'canceled'])
                 ->default('waiting');
-
-
-
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

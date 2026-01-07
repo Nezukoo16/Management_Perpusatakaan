@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
 use App\Models\Transaction;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
 
-    public function getTransations()
+    public function getTransactions()
     {
         $transactions = Transaction::get();
         return ApiResponse::success($transactions, "Success To Get All Transactions");
@@ -23,13 +25,19 @@ class TransactionController extends Controller
 
     public function createTransaction(Request $request)
     {
-        $validated = $request->validate([
-            "reservation_id" => "required|integer",
-            "borrow_date" => "required|string",
-            "due_date" => "required|string",
-        ]);
-        $transaction = Transaction::create($validated);
-        return ApiResponse::success($transaction, "Succes to Create A Transaction");
+        try {
+            $validated = $request->validate([
+                "reservation_id" => "required|integer",
+                "borrow_date" => "required|string",
+                "due_date" => "required|string",
+                "status" => "sometimes|string",
+            ]);
+            $transaction = Transaction::create($validated);
+            return ApiResponse::success($transaction, "Succes to Create A Transaction");
+        } catch (Exception $e) {
+            Log::alert($e);
+            return ApiResponse::error("Internal Server Error", $e, 500);
+        }
     }
 
     public function updateTransaction(Request $request, $id)
@@ -42,7 +50,7 @@ class TransactionController extends Controller
             "status" => "sometimes|string",
         ]);
         $transaction = Transaction::where("transaction_id", $id)->update($validated);
-        return ApiResponse::success($transaction, "Succes to Create A Transaction");
+        return ApiResponse::success($transaction, "Succes to Update A Transaction");
     }
 
     public function deleteTransaction(Request $request, $id)
