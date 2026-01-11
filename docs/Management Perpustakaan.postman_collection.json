@@ -1,0 +1,2072 @@
+{
+	"info": {
+		"_postman_id": "9592fe4a-f63e-45bb-886a-983933caa9e5",
+		"name": "Management Perpustakaan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33379055"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/categories"
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/categories"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:43:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get All Categories\",\n    \"data\": [\n        {\n            \"category_id\": 3,\n            \"name\": \"Bisnis\"\n        },\n        {\n            \"category_id\": 4,\n            \"name\": \"Novel\"\n        },\n        {\n            \"category_id\": 2,\n            \"name\": \"Sains\"\n        },\n        {\n            \"category_id\": 1,\n            \"name\": \"Teknologi\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/categories/1"
+					},
+					"response": [
+						{
+							"name": "Get Single Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/categories/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:43:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get A Category\",\n    \"data\": {\n        \"category_id\": 1,\n        \"name\": \"Teknologi\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"self improvement\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/categories"
+					},
+					"response": [
+						{
+							"name": "Create Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"self improvement\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/categories"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:43:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A Category\",\n    \"data\": {\n        \"name\": \"self improvement\",\n        \"category_id\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": "{{apiURL}}/categories/1"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"finance\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/categories/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:44:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Update A Category\",\n    \"data\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/categories/1"
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/categories/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:51:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Delete A Category\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reservations",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/reservations"
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/reservations"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:07:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get All Reservations\",\n    \"data\": [\n        {\n            \"reservation_id\": 1,\n            \"user_id\": 1,\n            \"book_id\": 1,\n            \"reservation_date\": \"2025-12-28\",\n            \"status\": \"waiting\",\n            \"created_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"updated_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"reservation_id\": 2,\n            \"user_id\": 2,\n            \"book_id\": 2,\n            \"reservation_date\": \"2025-12-23\",\n            \"status\": \"completed\",\n            \"created_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"updated_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"reservation_id\": 3,\n            \"user_id\": 3,\n            \"book_id\": 3,\n            \"reservation_date\": \"2025-12-31\",\n            \"status\": \"canceled\",\n            \"created_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"updated_at\": \"2026-01-02T09:47:34.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/reservations/1"
+					},
+					"response": [
+						{
+							"name": "Get Single Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/reservations/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:14:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get A Reservation\",\n    \"data\": {\n        \"reservation_id\": 1,\n        \"user_id\": 1,\n        \"book_id\": 1,\n        \"reservation_date\": \"2025-12-28\",\n        \"status\": \"waiting\",\n        \"created_at\": \"2026-01-02T09:47:34.000000Z\",\n        \"updated_at\": \"2026-01-02T09:47:34.000000Z\",\n        \"deleted_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":1,\r\n    \"book_id\":1,\r\n    \"reservation_date\":null,\r\n    \"status\":\"waiting\" // waiting, completed, and cancelled\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/reservations"
+					},
+					"response": [
+						{
+							"name": "Create Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":1,\r\n    \"book_id\":1,\r\n    \"reservation_date\":\"2024-10-30 12:00:00\",\r\n    \"status\":\"waiting\" // waiting, completed, and cancelled\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/reservations"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:25:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A Reservation\",\n    \"data\": {\n        \"user_id\": 1,\n        \"book_id\": 1,\n        \"reservation_date\": \"2024-10-30 12:00:00\",\n        \"status\": \"waiting\",\n        \"updated_at\": \"2026-01-02T13:25:21.000000Z\",\n        \"created_at\": \"2026-01-02T13:25:21.000000Z\",\n        \"reservation_id\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":1,\r\n    \"book_id\":1,\r\n    \"reservation_date\":\"2024-10-30 12:00:00\",\r\n    \"status\":\"waiting\" // waiting, completed, and cancelled\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/reservations/2"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":1,\r\n    \"book_id\":1,\r\n    \"reservation_date\":\"2024-10-30 12:00:00\",\r\n    \"status\":\"waiting\" // waiting, completed, and cancelled\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/reservations/2"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:30:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Update A Reservation\",\n    \"data\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/reservations/1"
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/reservations/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:16:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Delete A Reservation\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/transactions"
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/transactions"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:35:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get All Transactions\",\n    \"data\": [\n        {\n            \"transaction_id\": 1,\n            \"reservation_id\": 1,\n            \"borrow_date\": \"2025-12-30\",\n            \"due_date\": \"2026-01-06\",\n            \"return_date\": null,\n            \"status\": \"borrowed\",\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"transaction_id\": 2,\n            \"reservation_id\": 2,\n            \"borrow_date\": \"2025-12-23\",\n            \"due_date\": \"2025-12-30\",\n            \"return_date\": \"2025-12-31\",\n            \"status\": \"returned\",\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/transactions/1"
+					},
+					"response": [
+						{
+							"name": "Get Single Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/transactions/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:36:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get A Transaction\",\n    \"data\": {\n        \"transaction_id\": 1,\n        \"reservation_id\": 1,\n        \"borrow_date\": \"2025-12-30\",\n        \"due_date\": \"2026-01-06\",\n        \"return_date\": null,\n        \"status\": \"borrowed\",\n        \"created_at\": null,\n        \"updated_at\": null,\n        \"deleted_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservation_id\": 3,\r\n    \"borrow_date\": \"2024-10-30 12:00:00\",\r\n    \"due_date\": \"2024-10-31 12:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/transactions"
+					},
+					"response": [
+						{
+							"name": "Create Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reservation_id\": 3,\r\n    \"borrow_date\": \"2024-10-30 12:00:00\",\r\n    \"due_date\": \"2024-10-31 12:00:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/transactions"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:41:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A Transaction\",\n    \"data\": {\n        \"reservation_id\": 3,\n        \"borrow_date\": \"2024-10-30 12:00:00\",\n        \"due_date\": \"2024-10-31 12:00:00\",\n        \"updated_at\": \"2026-01-02T15:41:40.000000Z\",\n        \"created_at\": \"2026-01-02T15:41:40.000000Z\",\n        \"transaction_id\": 3\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"reservation_id\": 3,\r\n    // \"borrow_date\": \"2024-10-30 12:00:00\",\r\n    // \"due_date\": \"2024-10-31 12:00:00\",\r\n    \"status\":\"returned\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/transactions/1"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    // \"reservation_id\": 3,\r\n    // \"borrow_date\": \"2024-10-30 12:00:00\",\r\n    // \"due_date\": \"2024-10-31 12:00:00\",\r\n    \"status\":\"returned\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/transactions/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:42:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Update A Transaction\",\n    \"data\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/transactions/1"
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/transactions/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 15:43:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Delete A Transaction\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/books"
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/books"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:52:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get All Books\",\n    \"data\": [\n        {\n            \"book_id\": 1,\n            \"title\": \"Clean Code\",\n            \"category_id\": 1,\n            \"author\": \"Robert C. Martin\",\n            \"publisher\": \"Prentice Hall\",\n            \"publication_year\": 2008,\n            \"stock\": 10,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"book_id\": 2,\n            \"title\": \"The Pragmatic Programmer\",\n            \"category_id\": 1,\n            \"author\": \"Andrew Hunt & David Thomas\",\n            \"publisher\": \"Addison-Wesley\",\n            \"publication_year\": 1999,\n            \"stock\": 8,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"book_id\": 3,\n            \"title\": \"Atomic Habits\",\n            \"category_id\": 3,\n            \"author\": \"James Clear\",\n            \"publisher\": \"Penguin Random House\",\n            \"publication_year\": 2018,\n            \"stock\": 12,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"book_id\": 4,\n            \"title\": \"Brief Answers to the Big Questions\",\n            \"category_id\": 2,\n            \"author\": \"Stephen Hawking\",\n            \"publisher\": \"Bantam\",\n            \"publication_year\": 2018,\n            \"stock\": 5,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/books/1"
+					},
+					"response": [
+						{
+							"name": "Get Single Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/books/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:52:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get A Book\",\n    \"data\": {\n        \"book_id\": 1,\n        \"title\": \"Clean Code\",\n        \"category_id\": 1,\n        \"author\": \"Robert C. Martin\",\n        \"publisher\": \"Prentice Hall\",\n        \"publication_year\": 2008,\n        \"stock\": 10,\n        \"created_at\": null,\n        \"updated_at\": null,\n        \"deleted_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Data",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Emotional Intelegence\",\r\n    \"category_id\": 1,\r\n    \"author\": \"Daniel Goleman\",\r\n    \"publisher\": \"Gramedia\",\r\n    \"publication_year\": \"2008\",\r\n    \"stock\": 10,\r\n    \"created_at\": null,\r\n    \"updated_at\": null,\r\n    \"deleted_at\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/books"
+					},
+					"response": [
+						{
+							"name": "Create Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Emotional Intelegence\",\r\n    \"category_id\": 1,\r\n    \"author\": \"Daniel Goleman\",\r\n    \"publisher\": \"Gramedia\",\r\n    \"publication_year\": \"2008\",\r\n    \"stock\": 10,\r\n    \"created_at\": null,\r\n    \"updated_at\": null,\r\n    \"deleted_at\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/books"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:56:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A Book\",\n    \"data\": {\n        \"title\": \"Emotional Intelegence\",\n        \"category_id\": 1,\n        \"author\": \"Daniel Goleman\",\n        \"publisher\": \"Gramedia\",\n        \"publication_year\": \"2008\",\n        \"stock\": 10,\n        \"updated_at\": \"2026-01-02T09:56:37.000000Z\",\n        \"created_at\": \"2026-01-02T09:56:37.000000Z\",\n        \"book_id\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Think Again\",\r\n    \"category_id\": 1,\r\n    \"author\": \"Adam Grant\",\r\n    \"publisher\": \"Gramedia\",\r\n    \"publication_year\": \"2008\",\r\n    \"stock\": 10,\r\n    \"created_at\": null,\r\n    \"updated_at\": null,\r\n    \"deleted_at\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/books/1"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Think Again\",\r\n    \"category_id\": 1,\r\n    \"author\": \"Adam Grant\",\r\n    \"publisher\": \"Gramedia\",\r\n    \"publication_year\": \"2008\",\r\n    \"stock\": 10,\r\n    \"created_at\": null,\r\n    \"updated_at\": null,\r\n    \"deleted_at\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/books/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:57:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A Book\",\n    \"data\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/books/1"
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/books/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:57:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Delete A Book\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/users"
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:02:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get All Users\",\n    \"data\": [\n        {\n            \"user_id\": 1,\n            \"name\": \"Admin Sistem\",\n            \"nim\": 2301010001,\n            \"jurusan\": \"Teknik Informatika\",\n            \"status\": 1,\n            \"role\": \"admin\",\n            \"email\": \"admin@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"user_id\": 2,\n            \"name\": \"Budi Santoso\",\n            \"nim\": 2301010002,\n            \"jurusan\": \"Sistem Informasi\",\n            \"status\": 1,\n            \"role\": \"member\",\n            \"email\": \"budi@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"user_id\": 3,\n            \"name\": \"Siti Aisyah\",\n            \"nim\": 2301010003,\n            \"jurusan\": \"Teknik Komputer\",\n            \"status\": 1,\n            \"role\": \"member\",\n            \"email\": \"siti@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"deleted_at\": null\n        },\n        {\n            \"user_id\": 4,\n            \"name\": \"test\",\n            \"nim\": 12345,\n            \"jurusan\": \"Ilmu Komputer\",\n            \"status\": 1,\n            \"role\": \"admin\",\n            \"email\": \"test@example.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2026-01-02T09:51:00.000000Z\",\n            \"updated_at\": \"2026-01-02T09:51:00.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/users/1"
+					},
+					"response": [
+						{
+							"name": "Get Single Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/users/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:02:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success To Get A User\",\n    \"data\": {\n        \"user_id\": 1,\n        \"name\": \"Admin Sistem\",\n        \"nim\": 2301010001,\n        \"jurusan\": \"Teknik Informatika\",\n        \"status\": 1,\n        \"role\": \"admin\",\n        \"email\": \"admin@example.com\",\n        \"email_verified_at\": null,\n        \"created_at\": null,\n        \"updated_at\": null,\n        \"deleted_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Data",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 1,\r\n    \"name\": \"test create\",\r\n    \"nim\": 54321,\r\n    \"jurusan\": \"Teknik Informatika\",\r\n    \"status\": 1,\r\n    \"role\": \"member\",\r\n    \"email\": \"test1@example.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/users"
+					},
+					"response": [
+						{
+							"name": "Create Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"name\": \"test create\",\r\n    \"nim\": 54321,\r\n    \"jurusan\": \"Teknik Informatika\",\r\n    \"status\": 1,\r\n    \"role\": \"member\",\r\n    \"email\": \"test1@example.com\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:02:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Create A User\",\n    \"data\": {\n        \"email\": \"test1@example.com\",\n        \"name\": \"test create\",\n        \"nim\": 54321,\n        \"jurusan\": \"Teknik Informatika\",\n        \"role\": \"member\",\n        \"status\": 1,\n        \"updated_at\": \"2026-01-02T13:02:50.000000Z\",\n        \"created_at\": \"2026-01-02T13:02:50.000000Z\",\n        \"user_id\": 7\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test update\",\r\n    \"nim\": 67890,\r\n    \"jurusan\": \"Teknik Informatika\",\r\n    \"status\": 1,\r\n    \"role\": \"member\",\r\n    \"email\": \"test_update@example.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/users/6"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test update\",\r\n    \"nim\": 67890,\r\n    \"jurusan\": \"Teknik Informatika\",\r\n    \"status\": 1,\r\n    \"role\": \"member\",\r\n    \"email\": \"test_update@example.com\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/users/6"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:03:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Update A User\",\n    \"data\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/users/6"
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/users/6"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:03:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Succes to Delete A User\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"budi@example.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/auth/login"
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\":\"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 03 Jan 2026 16:33:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success to login\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Njc0NTc5OTQsImV4cCI6MTc2NzQ2MTU5NCwibmJmIjoxNzY3NDU3OTk0LCJqdGkiOiJVYWJzdGhVZ0t1MExyaXYxIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2Ez3Q14GuzWIgFV-gHtj0NtDVqUCz7E9ufA0GJ6J3m0\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/auth/refresh"
+					},
+					"response": [
+						{
+							"name": "Refresh",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/auth/refresh"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:58:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success to login\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVmcmVzaCIsImlhdCI6MTc2NzM0NzQ3NiwiZXhwIjoxNzY3MzUxNTMwLCJuYmYiOjE3NjczNDc5MzAsImp0aSI6ImVReXg1VExWQ3RMaVRPdEMiLCJzdWIiOiI0IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.V1w2mh1UApXN3ML5_U4pqY0P6n7WaGH4ux-vYRxJsG0\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{apiURL}}/auth/me"
+					},
+					"response": [
+						{
+							"name": "Me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{apiURL}}/auth/me"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 13:02:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"user_id\": 4,\n        \"name\": \"test\",\n        \"nim\": 12345,\n        \"jurusan\": \"Ilmu Komputer\",\n        \"status\": 1,\n        \"role\": \"admin\",\n        \"email\": \"test@example.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2026-01-02T09:51:00.000000Z\",\n        \"updated_at\": \"2026-01-02T09:51:00.000000Z\",\n        \"deleted_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"email\":\"test@example.com\",\r\n    \"nim\": 12345,\r\n    \"jurusan\": \"Ilmu Komputer\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiURL}}/auth/register"
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\",\r\n    \"email\":\"test@example.com\",\r\n    \"nim\": 12345,\r\n    \"jurusan\": \"Ilmu Komputer\",\r\n    \"password\":\"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiURL}}/auth/register"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 09:51:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success to register\",\n    \"data\": {\n        \"name\": \"test\",\n        \"email\": \"test@example.com\",\n        \"nim\": 12345,\n        \"jurusan\": \"Ilmu Komputer\",\n        \"updated_at\": \"2026-01-02T09:51:00.000000Z\",\n        \"created_at\": \"2026-01-02T09:51:00.000000Z\",\n        \"user_id\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{apiURL}}/auth/logout"
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{apiURL}}/auth/logout"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jan 2026 10:03:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success to logout\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "getData",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
