@@ -18,6 +18,10 @@ const useUserStore = create((set, get) => ({
     set({ isLoading: false });
     return res;
   },
+  logout: async () => {
+    localStorage.clear();
+    window.location.href = "/";
+  },
   fetchUsers: async () => {
     set({ isLoading: true });
     const res = await api.get("/users");

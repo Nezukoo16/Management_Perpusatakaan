@@ -14,7 +14,7 @@ const useReservationStore = create((set, get) => ({
   },
   addReservation: async (data) => {
     set({ isLoading: true });
-    console.log(data);
+    console.log("store", data);
     const res = await api.post("/reservations", data);
     const { fetchReservations } = get();
     fetchReservations();

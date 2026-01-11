@@ -100,6 +100,11 @@ function AdminSidebar({ children }) {
     navigate(`/admin/${menuId}`);
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -189,19 +194,11 @@ function AdminSidebar({ children }) {
 
         {/* User Profile */}
         <div className="border-t border-blue-800 p-4">
-          <div className="flex items-center space-x-3">
-            <div className="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">
-              <span className="font-bold">A</span>
-            </div>
-            {isSidebarOpen && (
-              <div className="flex-1">
-                <p className="font-medium text-sm">Admin</p>
-                <p className="text-xs text-blue-300">admin@perpustakaan.com</p>
-              </div>
-            )}
-          </div>
           {isSidebarOpen && (
-            <button className="w-full mt-3 py-2 bg-blue-800 hover:bg-blue-700 rounded-lg text-sm font-medium transition">
+            <button
+              className="w-full mt-3 py-2 bg-blue-800 hover:bg-blue-700 rounded-lg text-sm font-medium transition"
+              onClick={() => handleLogout()}
+            >
               Logout
             </button>
           )}

@@ -16,6 +16,8 @@ Route::prefix("/auth")->group(function () {
     Route::get("/refresh", [AuthController::class, "refresh"]);
 });
 
+
+
 Route::middleware("jwt.auth")->group(function () {
     // Authentication
     Route::delete("/auth/logout", [AuthController::class, "logout"]);
